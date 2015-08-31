@@ -9,7 +9,7 @@
     "url": "https://github.com/relax/framework.git"
   },
   "scripts": {
-    "prepublish": "NODE_ENV=production grunt build:production",
+    "prepublish": "npm run build",
     "build": "grunt build",
     "test": "grunt test",
     "watch": "grunt watch"
