@@ -1,6 +1,6 @@
 {
   "name": "relax-framework",
-  "version": "1.0.0-alpha9",
+  "version": "1.0.0-alpha10",
   "description": "Relax CMS own approach of Flux pattern",
   "license": "GPL-3.0",
   "main": "dist/lib/index.js",
