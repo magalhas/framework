@@ -77,8 +77,16 @@ module.exports = function (grunt) {
         tasks: ['build:lib']
       },
       test: {
-        files: 'test/specs/**/*.js',
-        tasks: ['build:test']
+        files: ['test/specs/**/*.js', 'lib/**/*.js'],
+        tasks: ['test']
+      }
+    },
+    concurrent: {
+      test: {
+        tasks: ['watch:test'],
+        options: {
+          logConcurrentOutput: true
+        }
       }
     }
   });
@@ -88,10 +96,12 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-concurrent');
 
   grunt.registerTask('default', ['build']);
   grunt.registerTask('build', ['clean', 'copy', 'babel']);
   grunt.registerTask('build:lib', ['clean:lib', 'copy:lib', 'babel:lib']);
   grunt.registerTask('build:test', ['clean:test', 'copy:test', 'babel:test']);
-  grunt.registerTask('test', ['mochaTest']);
+  grunt.registerTask('test', ['build', 'mochaTest']);
+  grunt.registerTask('test:watch', ['test', 'concurrent:test']);
 };
